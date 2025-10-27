@@ -8,7 +8,7 @@ class studentManager(tk.Tk):
         super().__init__()
         self.title('Student Manager')
 
-        # data handler
+        # data 
         self.info = [
         {'code': 9357, 'name': 'Grace Johns', 'course_work': [10, 16, 4],'exam_score': 62},
         {'code': 6727, 'name': 'Rosie Gray', 'course_work': [12, 8, 16],'exam_score': 65},
@@ -38,33 +38,45 @@ class studentManager(tk.Tk):
         self.record_display.grid_propagate(False)
 
         # run
-        self.mainloop()
+        self.mainloop()    
 
-    # def formatted_info(self):
-    #     format = []
+        # data handlers
+    def formatted_info(self, student):
+        cw, es = student['course_work'], student['exam_score']
+        cw_total = sum(cw)
+        pct = round((cw_total + es) / 160 * 100, 2)
 
-    #     for student in self.info:
-    #         cw, es = student.get('course_work'), student.get('exam_score')
-    #         cw_total = sum(cw)
-    #         pct = round((cw_total + es) / 160 * 100, 2)
+        if pct < 40:
+            grade = 'F'
+        elif pct >= 40 and pct < 50:
+            grade = 'D'
+        elif pct >= 50 and pct < 60:
+            grade = 'C'
+        elif pct >= 60 and pct < 70:
+            grade = 'B'
+        else:
+            grade = 'A'
 
-    #         if pct < 40:
-    #             grade = 'F'
-    #         elif pct >= 40 and pct < 50:
-    #             grade = 'D'
-    #         elif pct >= 50 and pct < 60:
-    #             grade = 'C'
-    #         elif pct >= 60 and pct < 70:
-    #             grade = 'B'
-    #         elif pct >= 70:
-    #             grade = 'A'
-            
-    #         format = f'Name: {student.get('name')}\nNumber: {student.get('code')}\nCoursework Total: {cw_total}\nExam Mark: {es}\nOverall Percentage: {pct}%\nGrade: {grade}'
+        return f"""Name: {student['name']}
+Number: {student['code']}
+Coursework Total: {cw_total}
+Exam Mark: {es}
+Overall Percentage: {pct}%
+Grade: {grade}"""
 
-    #         if record: 
-    #             record.grid_forget()
-            
-            
+    def individual_record(self, student_name):
+        student = None
+        for s in self.info:
+            if s['name'] == student_name:
+                student = s
+                break
+
+        if student:
+            record = self.formatted_info(student)
+            self.record_display.display_record(record)
+
+        else:
+            self.record_display.display_record('Student not found.')
 
 class Menu(ttk.Frame):
     def __init__(self, parent):
@@ -92,11 +104,17 @@ class Records(ttk.Frame):
         names = [student['name'] for student in self.info]
         ttk.Label(self, text = 'View Individual Student Record:', font = ('Arial', 11)).grid(row = 0, column = 0,  ipadx = 5, sticky = 'W')
 
-
         search_record = ttk.Combobox(self, width = 15, textvariable = self.clicked, values = names)
         search_record.grid(row = 0, column = 1, sticky = 'EW')
-        view_record = ttk.Button(self, text = 'View Record')
+        view_record = ttk.Button(self, text = 'View Record', command = self.view_record)
         view_record.grid(row = 0, column = 3, padx = (10,0), ipadx = 5, ipady = 5)
+
+    def view_record(self):
+        selected_name = self.clicked.get()
+        if selected_name:
+            self.master.individual_record(selected_name)
+        else:
+            self.master.record_display.display_record('')
 
 class RecordsDisplay(ttk.Frame):
     def __init__(self, parent):
@@ -120,4 +138,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
