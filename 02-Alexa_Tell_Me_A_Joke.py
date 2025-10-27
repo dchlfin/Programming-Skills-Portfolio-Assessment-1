@@ -7,13 +7,13 @@ def jokes():
         "Did you hear about the couple of bed bugs? They got married in the spring!",
         "Which one of your kids will never grow up and move out! Your husband!",
         "Why is being married worse than going to work? At least at work, you might get a new boss!",
-        "How are boys similar to wine? They years and years and years to mature!",
+        "How are boys similar to wine? They take years and years and years to mature!",
         "Why is a good doctor able to stay calm? He has a lot of patients!",
-        "What the best way to criticize your boss? Very quietly, so she can’t hear you!",
-        "Why did the marketer dump her ,boyfriend? Lack of engagement!",
+        "What's the best way to criticize your boss? Very quietly, so she can’t hear you!",
+        "Why did the marketer dump her boyfriend? Lack of engagement!",
         "What’s a pirate’s favorite meeting style? A webinarrrrr!",
         "What does Nemo have in common with my dad? Neither can be found!",
-        "What did the cow say to the leather chair? \"Hi Mom!\"",
+        "What did the cow say to the leather chair? 'Hi, Mom!'",
         "When does a joke become a dad joke? When it leaves and never comes back!",
         "Who makes the most money off of Father’s Day? Therapists!",
         "Why don’t cannibals eat clowns? Because they taste funny!",
@@ -29,7 +29,7 @@ def jokes():
     
 def setup(jokes):
     value = random.choice(jokes)
-    qm = value.find("?")
+    qm = value.find('?')
     if qm != -1:
         kw = value.lower()
         if "what" in kw:
@@ -54,26 +54,26 @@ def setup(jokes):
         print(value.strip())
 
 def validate(ans):
-    kw = "joke"
+    kw = 'joke'
     while kw not in ans:
         ans = input("Alexa: Sorry, I didn't quite understand that. Could you repeat that?: ")
     else:
-        # displayJoke(jokes())
         setup(jokes())
     
 def joke_loop():
-    cond = "y"
+    cond = 'y'
     ans = input("Alexa: Hello, do you want to hear a joke?\nAlexa: Repeat after me, \"Alexa, tell me a joke.\": ").lower()
     validate(ans)
-    while (cond == "y"):
+    while (cond == 'y'):
         cond = input("Alexa: Would you like to hear another joke? (y/n): ").lower()
-        if (cond == "n"):
+        if (cond == 'n'):
             break
         setup(jokes())
 
 def main():
     joke_loop()
     
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
+
 
