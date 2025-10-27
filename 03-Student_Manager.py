@@ -10,21 +10,20 @@ class studentManager(tk.Tk):
 
         # data 
         self.info = [
-        {'code': 9357, 'name': 'Grace Johns', 'course_work': [10, 16, 4],'exam_score': 62},
-        {'code': 6727, 'name': 'Rosie Gray', 'course_work': [12, 8, 16],'exam_score': 65},
-        {'code': 4175, 'name': 'Hallie Morrison', 'course_work': [3, 15, 11],'exam_score': 64},
-        {'code': 8439, 'name': 'Jake Hobbs', 'course_work': [10, 11, 10],'exam_score': 43},
-        {'code': 3921, 'name': 'Arthur Kelly', 'course_work': [11, 7, 19],'exam_score': 93},
-        {'code': 7724, 'name': 'Freddie Scott', 'course_work': [9, 11, 17],'exam_score': 63},
-        {'code': 9413, 'name': 'Caleb Hunter', 'course_work': [7, 9, 20],'exam_score': 56},
-        {'code': 3746, 'name': 'George Peterson', 'course_work': [14, 12, 13],'exam_score': 89},
-        {'code': 9643, 'name': 'Ivy Cameron', 'course_work': [15, 19, 14],'exam_score': 96},
-        {'code': 6055, 'name': 'Arlo Martin', 'course_work': [19, 12, 2],'exam_score': 55}
-        ]   
+        {'code': 1001, 'name': 'Ava Williams', 'course_work': [13, 15, 17],'exam_score': 70},
+        {'code': 1002, 'name': 'Liam Thompson', 'course_work': [11, 13, 15],'exam_score': 60},
+        {'code': 1003, 'name': 'Sophia Brown', 'course_work': [17, 18, 19],'exam_score': 80},
+        {'code': 1004, 'name': 'Noah Wilson', 'course_work': [9, 11, 13],'exam_score': 50},
+        {'code': 1005, 'name': 'Mia Garcia', 'course_work': [14, 13, 12],'exam_score': 65},
+        {'code': 1006, 'name': 'James Lee', 'course_work': [14, 16, 18],'exam_score': 75},
+        {'code': 1007, 'name': 'Isabella Scott', 'course_work': [12, 14, 16],'exam_score': 68},
+        {'code': 1008, 'name': 'Mason Harris', 'course_work': [13, 15, 17],'exam_score': 72},
+        {'code': 1009, 'name': 'Lily Adams', 'course_work': [11, 13, 14],'exam_score': 48},
+        {'code': 1010, 'name': 'Ethan Moore', 'course_work': [15, 17, 19],'exam_score': 78}
+        ]    
 
         # search record
         self.clicked = tk.StringVar()
-
 
         # widgets 
         self.menu = Menu(self)
@@ -78,6 +77,14 @@ Grade: {grade}"""
         else:
             self.record_display.display_record('Student not found.')
 
+    def all_records(self):
+        records = []
+        for student in self.info:
+            records.append(self.formatted_info(student))
+        
+        all_records = "\n\n".join(records)
+        self.record_display.display_record(all_records)
+
 class Menu(ttk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
@@ -86,12 +93,15 @@ class Menu(ttk.Frame):
         self.buttons()
 
     def buttons(self):
-        records = ttk.Button(self, text = 'View All Student Records')
+        records = ttk.Button(self, text = 'View All Student Records', command = self.view_all)
         records.grid(row = 1, column = 0, padx = (0,15), ipadx = 5, ipady = 5, sticky = 'W')
         high = ttk.Button(self, text = 'Show Highest Score')
         high.grid(row = 1, column = 1, ipadx = 5, ipady = 5, sticky = tk.W)
         low = ttk.Button(self, text = 'Show Lowest Score')
         low.grid(row = 1, column = 2, ipadx = 5, ipady = 5, padx = (15,0), sticky = tk.W)
+
+    def view_all(self):
+        self.master.all_records()
 
 class Records(ttk.Frame):
     def __init__(self, parent, info, clicked): 
@@ -138,5 +148,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 
