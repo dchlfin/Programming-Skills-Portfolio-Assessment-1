@@ -106,9 +106,18 @@ class RecordsDisplay(ttk.Frame):
         s = ttk.Style()
         s.configure('Display.TFrame', background = 'white')
 
+        self.record_label = tk.Label(self, text = '', background = 'white', justify = 'left', wraplength = 380)
+        self.record_label.grid(row = 0, column = 0, padx = 10, pady = 10, sticky = 'W')
+
+        self.grid_rowconfigure(0, weight = 1)
+        self.grid_columnconfigure(0, weight = 1)
+
+    def display_record(self, record_text):
+        self.record_label.config(text = record_text)
 
 def main():
     studentManager()
 
 if __name__ == '__main__':
     main()
+
