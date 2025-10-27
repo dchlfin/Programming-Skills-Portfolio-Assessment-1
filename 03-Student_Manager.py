@@ -41,8 +41,9 @@ class studentManager(tk.Tk):
 
         # data handlers
     def formatted_info(self, student):
-        cw, es = student['course_work'], student['exam_score']
-        cw_total = sum(cw)
+        es = self.exam_score(student)
+        cw_total = self.course_work_total(student)
+        overall_marks = self.overall_marks(student)
         pct = round((cw_total + es) / 160 * 100, 2)
 
         if pct < 40:
@@ -62,6 +63,15 @@ Coursework Total: {cw_total}
 Exam Mark: {es}
 Overall Percentage: {pct}%
 Grade: {grade}"""
+
+    def overall_marks(self, student):
+        return self.course_work_total(student) + self.exam_score(student)
+    
+    def course_work_total(self, student):
+        return sum(student['course_work'])
+    
+    def exam_score(self, student):
+        return student['exam_score']
 
     def individual_record(self, student_name):
         student = None
@@ -85,6 +95,14 @@ Grade: {grade}"""
         all_records = "\n\n".join(records)
         self.record_display.display_record(all_records)
 
+    def high_OR_low(self, value):
+        if value == True:
+            student = self.formatted_info(max(self.info, key = self.overall_marks))
+        else:
+            student = self.formatted_info(min(self.info, key = self.overall_marks))
+
+        self.record_display.display_record(student)
+
 class Menu(ttk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
@@ -93,15 +111,25 @@ class Menu(ttk.Frame):
         self.buttons()
 
     def buttons(self):
+        self.value = False
+        
         records = ttk.Button(self, text = 'View All Student Records', command = self.view_all)
         records.grid(row = 1, column = 0, padx = (0,15), ipadx = 5, ipady = 5, sticky = 'W')
-        high = ttk.Button(self, text = 'Show Highest Score')
+        high = ttk.Button(self, text = 'Show Highest Score', command = self.view_high)
         high.grid(row = 1, column = 1, ipadx = 5, ipady = 5, sticky = tk.W)
-        low = ttk.Button(self, text = 'Show Lowest Score')
+        low = ttk.Button(self, text = 'Show Lowest Score', command = self.view_low)
         low.grid(row = 1, column = 2, ipadx = 5, ipady = 5, padx = (15,0), sticky = tk.W)
 
     def view_all(self):
         self.master.all_records()
+
+    def view_high(self):
+        self.value = True
+        self.master.high_OR_low(self.value)
+
+    def view_low(self):
+        self.value = False
+        self.master.high_OR_low(self.value)
 
 class Records(ttk.Frame):
     def __init__(self, parent, info, clicked): 
@@ -148,6 +176,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
