@@ -63,11 +63,18 @@ Coursework Total: {cw_total}
 Exam Mark: {es}
 Overall Percentage: {pct}%
 Grade: {grade}"""
+        
     def summary(self):
+        student_total = len(self.info)
+
+        percentages = []
         for s in self.info:
             pct = round(self.overall_marks(s) / 160 * 100, 2)
             percentages.append(pct)
+
+        average_pct = round(sum(percentages) / student_total, 2)
         return student_total, average_pct
+        
     def overall_marks(self, student):
         return self.course_work_total(student) + self.exam_score(student)
     
@@ -220,3 +227,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
