@@ -103,10 +103,11 @@ Grade: {grade}"""
         for student in self.info:
             records.append(self.formatted_info(student))
         
-        all_records = "\n\n".join(records)
+        student_total, average_pct = self.summary()
+        summary_text = f"Total Students: {student_total}\nAverage Percentage: {average_pct}%"
+        records.append(summary_text)
         self.record_display.display_all_records(records)
         
-
     def high_OR_low(self, value):
         if value == True:
             student = self.formatted_info(max(self.info, key = self.overall_marks))
@@ -195,7 +196,6 @@ class RecordsDisplay(ttk.Frame):
 
         # attach scrollbar to canvas
         self.canvas.configure(yscrollcommand = self.scrollbar.set)
-
         self.canvas.create_window((0,0), window = self.scrollable, anchor = "nw")
 
     def display_record(self, record_text):
@@ -227,4 +227,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
