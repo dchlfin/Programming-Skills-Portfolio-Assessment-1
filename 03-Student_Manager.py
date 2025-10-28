@@ -106,7 +106,7 @@ Grade: {grade}"""
 class Menu(ttk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
-        ttk.Label(self, text = 'Student Manager', font = ('Calibri', 15)).grid(row = 0, column = 0, columnspan = 3, pady = (0, 20))
+        ttk.Label(self, text = 'Student Manager', font = ('Arial', 15)).grid(row = 0, column = 0, columnspan = 3, pady = (0, 20))
 
         self.buttons()
 
@@ -161,12 +161,30 @@ class RecordsDisplay(ttk.Frame):
 
         s = ttk.Style()
         s.configure('Display.TFrame', background = 'white')
-
-        self.record_label = tk.Label(self, text = '', background = 'white', justify = 'left', wraplength = 380)
-        self.record_label.grid(row = 0, column = 0, padx = 10, pady = 10, sticky = 'W')
+        s.configure('Vertical.TScrollbar', background = 'white')
 
         self.grid_rowconfigure(0, weight = 1)
         self.grid_columnconfigure(0, weight = 1)
+
+        # canvas
+        self.canvas = tk.Canvas(self, bg = 'white', highlightbackground = 'white')
+        self.canvas.grid(row = 0, column = 0, sticky = "NSEW")
+
+        # scrollable frame
+        self.scrollable = tk.Frame(self.canvas, bg = 'white')
+
+        # scrollbar
+        self.scrollbar = ttk.Scrollbar(self, orient = 'vertical', command = self.canvas.yview)
+        self.scrollbar_position = self.scrollbar.get()
+        
+        self.rowconfigure(0, weight = 1)
+        self.columnconfigure(0, weight = 1)
+        self.columnconfigure(1, weight = 0)
+
+        # attach scrollbar to canvas
+        self.canvas.configure(yscrollcommand = self.scrollbar.set)
+
+        self.canvas.create_window((0,0), window = self.scrollable, anchor = "nw")
 
     def display_record(self, record_text):
         self.record_label.config(text = record_text)
@@ -176,3 +194,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
