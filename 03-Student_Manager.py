@@ -93,7 +93,7 @@ Grade: {grade}"""
             records.append(self.formatted_info(student))
         
         all_records = "\n\n".join(records)
-        self.record_display.display_record(all_records)
+        self.record_display.display_all_records(records)
         
 
     def high_OR_low(self, value):
@@ -216,3 +216,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
