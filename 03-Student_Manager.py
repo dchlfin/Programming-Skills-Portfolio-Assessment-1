@@ -94,6 +94,7 @@ Grade: {grade}"""
         
         all_records = "\n\n".join(records)
         self.record_display.display_record(all_records)
+        
 
     def high_OR_low(self, value):
         if value == True:
@@ -118,7 +119,7 @@ class Menu(ttk.Frame):
         high = ttk.Button(self, text = 'Show Highest Score', command = self.view_high)
         high.grid(row = 1, column = 1, ipadx = 5, ipady = 5, sticky = tk.W)
         low = ttk.Button(self, text = 'Show Lowest Score', command = self.view_low)
-        low.grid(row = 1, column = 2, ipadx = 5, ipady = 5, padx = (15,0), sticky = tk.W)
+        low.grid(row = 1, column = 2, ipadx = 5, ipady = 5, padx = (15, 0), sticky = tk.W)
 
     def view_all(self):
         self.master.all_records()
@@ -168,7 +169,7 @@ class RecordsDisplay(ttk.Frame):
 
         # canvas
         self.canvas = tk.Canvas(self, bg = 'white', highlightbackground = 'white')
-        self.canvas.grid(row = 0, column = 0, sticky = "NSEW")
+        self.canvas.grid(row = 0, column = 0, sticky = 'NSEW')
 
         # scrollable frame
         self.scrollable = tk.Frame(self.canvas, bg = 'white')
@@ -196,6 +197,19 @@ class RecordsDisplay(ttk.Frame):
 
         record_label = tk.Label(self.scrollable, text = record_text, background = 'white', justify = 'left', wraplength = 380)
         record_label.grid(row = 0, column = 0, padx = 10, pady = 10, sticky = 'W')
+
+    def display_all_records(self, records_list):
+        for widget in self.scrollable.winfo_children():
+            widget.destroy()
+
+        self.scrollbar.grid(row = 0, column = 1, sticky = 'NS')
+        self.scrollable.bind("<Configure>", lambda e: self.canvas.configure(scrollregion = self.canvas.bbox("all")))
+
+        for i, record_text in enumerate(records_list):
+            record_label = tk.Label(self.scrollable, text = record_text, bg = 'white', justify = 'left', wraplength = 380)
+            record_label.grid(row = i, column = 0, padx = 10, pady = 5, sticky = 'W')
+
+        self.canvas.configure(scrollregion = self.canvas.bbox("all"))
 
 def main():
     studentManager()
