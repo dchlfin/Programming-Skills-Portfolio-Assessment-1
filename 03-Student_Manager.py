@@ -187,11 +187,18 @@ class RecordsDisplay(ttk.Frame):
         self.canvas.create_window((0,0), window = self.scrollable, anchor = "nw")
 
     def display_record(self, record_text):
-        self.record_label.config(text = record_text)
+        self.scrollbar.grid_forget()
+        self.canvas.yview_moveto(0)
+        self.canvas.configure(scrollregion = self.canvas.bbox("all"))
+
+        for widget in self.scrollable.winfo_children():
+            widget.destroy()
+
+        record_label = tk.Label(self.scrollable, text = record_text, background = 'white', justify = 'left', wraplength = 380)
+        record_label.grid(row = 0, column = 0, padx = 10, pady = 10, sticky = 'W')
 
 def main():
     studentManager()
 
 if __name__ == '__main__':
     main()
-
