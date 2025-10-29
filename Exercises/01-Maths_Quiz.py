@@ -9,7 +9,7 @@ def displayResults(points):
         print("Rank B: Nice!")
     elif points >= 80 and points < 90:
         print("Rank A: Good job!")
-    elif points >= 90 and points < 100:
+    elif points >= 90 and points <= 100:
         print("Rank A+: Congratulations! ")
 
 def isCorrect(user_ans, ans):
@@ -77,3 +77,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
