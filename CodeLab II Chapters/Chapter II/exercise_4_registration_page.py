@@ -38,12 +38,12 @@ class StudentManagement(ttk.Frame):
         self.grid_propagate(False)
 
         # headings
-        Label(self, text = "Student Management", bg = '#F5F5F6', fg = '#22263D', font = ('Arial', 15, 'bold')).grid(row = 0, column = 0, columnspan = 3)
+        Label(self, text = "Student Management", bg = '#F5F5F6', fg = '#22263D', font = ('Arial', 18, 'bold')).grid(row = 0, column = 0, columnspan = 3)
         Label(self, text = "New Student Registration", bg = '#F5F5F6', fg = '#22263D', font = ('Arial', 11, 'bold')).grid(row = 1, column = 1, pady = (0, 10))
 
         self.entries = Entries(self)
-        self.entries.grid(row = 2, column = 0, columnspan = 3, sticky = EW)
-
+        self.entries.grid(row = 2, column = 1, sticky = E, pady = (10, 0))
+        
         # form
         # ttk.Label(self, text = 'Student Name', style = 'Custom.TLabel').grid(row = 2, column = 1, sticky = EW)
         # ttk.Label(self, text = 'Mobile Number', style = 'Custom.TLabel').grid(row = 3, column = 1, sticky = EW)
@@ -60,16 +60,33 @@ class StudentManagement(ttk.Frame):
 
 class Entries(ttk.Frame):
     def __init__(self, parent):
-        super().__init__(parent, width = 285, height = 170)
+        super().__init__(parent, width = 252, height = 200)
 
         s1 = ttk.Style()
 
-        s1.configure('Entries.TFrame', background = "#454590")
+        s1.configure('Entries.TFrame', background = "#F5F5F6")
         s1.configure('Entries.TLabel', background = '#F5F5F6', foreground = '#22263D')
+        # s1.configure('Entries.TEntry', background = '#ADAEB7')
 
         self.configure(style = 'Entries.TFrame')
+        self.columnconfigure(0, weight = 1)
+        self.columnconfigure(1, weight = 5)
+        # self.columnconfigure(2, weight = 3)
         self.grid_propagate(False)
 
 
+        # labels
+        ttk.Label(self, text = "Student Name", style = 'Entries.TLabel').grid(row = 0, column = 0, sticky = E, pady = 10)
+        ttk.Label(self, text = "Mobile Number", style = 'Entries.TLabel').grid(row = 1, column = 0, sticky = E, pady = 10)
+        ttk.Label(self, text = "Email ID", style = 'Entries.TLabel').grid(row = 2, column = 0, sticky = E, pady = 10)
+        ttk.Label(self, text = "Home Address", style = 'Entries.TLabel').grid(row = 3, column = 0, sticky = E, pady = 10)
+        ttk.Label(self, text = "Gender", style = 'Entries.TLabel').grid(row = 4, column = 0, sticky = E, pady = 10)
+
+        # entries
+        Entry(self, bg = '#ADAEB7', width = 24, relief = FLAT).grid(row = 0, column = 1, sticky = E, ipady = 4)
+        Entry(self, bg = '#ADAEB7', width = 24, relief = FLAT).grid(row = 1, column = 1, sticky = E, ipady = 4)
+        Entry(self, bg = '#ADAEB7', width = 24, relief = FLAT).grid(row = 2, column = 1, sticky = E, ipady = 4)
+        Entry(self, bg = '#ADAEB7', width = 24, relief = FLAT).grid(row = 3, column = 1, sticky = E, ipady = 4)
+        
 if __name__ == "__main__":
     RegistrationPage()
