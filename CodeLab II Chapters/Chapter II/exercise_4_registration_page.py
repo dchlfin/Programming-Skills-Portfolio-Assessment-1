@@ -43,20 +43,6 @@ class StudentManagement(ttk.Frame):
 
         self.entries = Entries(self)
         self.entries.grid(row = 2, column = 1, sticky = E, pady = (10, 0))
-        
-        # form
-        # ttk.Label(self, text = 'Student Name', style = 'Custom.TLabel').grid(row = 2, column = 1, sticky = EW)
-        # ttk.Label(self, text = 'Mobile Number', style = 'Custom.TLabel').grid(row = 3, column = 1, sticky = EW)
-        # ttk.Label(self, text = 'Email ID', style = 'Custom.TLabel').grid(row = 4, column = 1, sticky = EW)
-        # ttk.Label(self, text = 'Home Address', style = 'Custom.TLabel').grid(row = 5, column = 1, sticky = EW)
-        # ttk.Label(self, text = 'Course Enrolled', style = 'Custom.TLabel').grid(row = 6, column = 1, sticky = EW)
-        # ttk.Entry(self, width=15).grid(row = 2, column = 2)
-        
-        # Label(self, text = "Student Management System", bg = '#F5F5F6', fg = '#22263D', font = ('Arial', 13, 'bold')).grid(row = 0, column = 0, columnspan = 3)
-        # Label(self, text = "New Student Registration", bg = '#F5F5F6', fg = '#22263D', font = ('Arial', 11, 'bold')).grid(row = 1, column = 2, sticky = EW)
-        # ttk.Label(self, text = 'Student Name', style = 'Custom.TLabel').grid(row = 2, column = 0, sticky = W, padx = 10, pady = 10)
-        # ttk.Label(self, text = 'Mobile Number', style = 'Custom.TLabel').grid(row = 3, column = 0, sticky = E, padx = 10, pady = 10)
-        # ttk.Label(self, text = 'Mobile Number', style = 'Custom.TLabel').grid(row = 4, column = 0, sticky = E, padx = 10, pady = 10)
 
 class Entries(ttk.Frame):
     def __init__(self, parent):
@@ -74,7 +60,6 @@ class Entries(ttk.Frame):
         # self.columnconfigure(2, weight = 3)
         self.grid_propagate(False)
 
-
         # labels
         ttk.Label(self, text = "Student Name", style = 'Entries.TLabel').grid(row = 0, column = 0, sticky = E, pady = 10)
         ttk.Label(self, text = "Mobile Number", style = 'Entries.TLabel').grid(row = 1, column = 0, sticky = E, pady = 10)
@@ -87,6 +72,6 @@ class Entries(ttk.Frame):
         Entry(self, bg = '#ADAEB7', width = 24, relief = FLAT).grid(row = 1, column = 1, sticky = E, ipady = 4)
         Entry(self, bg = '#ADAEB7', width = 24, relief = FLAT).grid(row = 2, column = 1, sticky = E, ipady = 4)
         Entry(self, bg = '#ADAEB7', width = 24, relief = FLAT).grid(row = 3, column = 1, sticky = E, ipady = 4)
-        
+
 if __name__ == "__main__":
     RegistrationPage()
