@@ -56,7 +56,6 @@ class Entries(ttk.Frame):
         self.configure(style = 'Entries.TFrame')
         self.columnconfigure(0, weight = 1)
         self.columnconfigure(1, weight = 5)
-        # self.columnconfigure(2, weight = 3)
         self.grid_propagate(False)
 
         # labels
