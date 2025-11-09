@@ -52,7 +52,6 @@ class Entries(ttk.Frame):
 
         s1.configure('Entries.TFrame', background = "#F5F5F6")
         s1.configure('Entries.TLabel', background = '#F5F5F6', foreground = '#22263D')
-        # s1.configure('Entries.TEntry', background = '#ADAEB7')
 
         self.configure(style = 'Entries.TFrame')
         self.columnconfigure(0, weight = 1)
