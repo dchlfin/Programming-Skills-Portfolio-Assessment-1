@@ -73,5 +73,9 @@ class Entries(ttk.Frame):
         Entry(self, bg = '#ADAEB7', width = 24, relief = FLAT).grid(row = 2, column = 1, sticky = E, ipady = 4)
         Entry(self, bg = '#ADAEB7', width = 24, relief = FLAT).grid(row = 3, column = 1, sticky = E, ipady = 4)
 
+        # combobox
+        gender = ["Male", "Female"]
+        ttk.Combobox(self, values = gender, style = 'Entries.TCombobox', width = 21).grid(row = 4, column = 1, sticky = E, ipady = 4) 
+
 if __name__ == "__main__":
     RegistrationPage()
