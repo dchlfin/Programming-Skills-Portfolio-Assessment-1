@@ -9,37 +9,31 @@ class Calculator(Tk):
         self.propagate(False)
 
         # styles
-        self.entry_font = {'font': ('Helvetica', 15)}
         self.s = ttk.Style()
         self.s.configure('calc.TButton', font = ('Helvetica', 15))
+        self.entry_font = {'font': ('Helvetica', 15)}
 
         self.columnconfigure(0, weight = 1)
         self.columnconfigure(1, weight = 1)
         self.columnconfigure(2, weight = 1)
 
         # widgets
-        self.entry = Entry(self, self.entry_font)
-        self.entry.grid(row = 0, column = 0, columnspan = 3, padx = 5, pady = 5, sticky = EW)
-        self.numbers = Numbers(self, self.s)
-        self.numbers.grid(row = 1, column = 0, columnspan = 3, padx = 5, pady = (0, 5), sticky = EW)
+        self.numbers = Numbers(self, self.entry_font)
+        self.numbers.grid(row = 1, column = 0, columnspan = 3, padx = 5, pady = 5, sticky = EW)
     
         # calculation methods
 
         # call
         self.mainloop()
 
-class Entry(ttk.Frame):
-    def __init__(self, parent, entry_font):
-        super().__init__(parent)
-        self.entry_font = entry_font
-        self.columnconfigure(0, weight = 1)
-        
-        ttk.Entry(self, style = 'calc.TEntry', **entry_font).grid(row = 0, column = 0, sticky = EW)
-
 class Numbers(ttk.Frame):
     def __init__(self, parent, entry_font):
         super().__init__(parent)
         self.entry_font = entry_font
+
+        # add num
+        def add_num(num):
+            entry.insert(0, num)
 
         # columns
         self.columnconfigure(0, weight = 1)
@@ -48,6 +42,8 @@ class Numbers(ttk.Frame):
         self.columnconfigure(3, weight = 1)
 
         # widgets
+        entry = ttk.Entry(self, style = 'calc.TEntry', **entry_font).grid(row = 0, column = 0, columnspan = 4, padx = 5, pady = (0, 5), sticky = EW)
+        
         ttk.Button(self, text = "÷").grid(row = 0, column = 3)
         ttk.Button(self, text = "9").grid(row = 0, column = 2)
         ttk.Button(self, text = "8").grid(row = 0, column = 1)
@@ -66,4 +62,3 @@ class Numbers(ttk.Frame):
 
 if __name__ == "__main__":
     Calculator()
-
