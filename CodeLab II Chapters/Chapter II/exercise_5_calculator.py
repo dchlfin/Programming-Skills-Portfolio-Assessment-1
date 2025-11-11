@@ -31,11 +31,64 @@ class Numbers(ttk.Frame):
         super().__init__(parent)
         self.entry_font = entry_font
 
-        # add num
+        # entry handler
         def enter(num):
             current = entry.get()
             entry.delete(0, END)
             entry.insert(0, str(current) + str(num))
+
+        # entry clear
+        def entry_clear():
+            entry.delete(0, END)
+
+        # addition
+        def add():
+            global n1
+            global operation
+            operation = "addition"
+            num1 = entry.get()
+            n1 = int(num1)
+            entry.delete(0, END)
+
+        # subtraction
+        def subtract():
+            global n1
+            global operation
+            operation = "subtraction"
+            num1 = entry.get()
+            n1 = int(num1)
+            entry.delete(0, END)
+        
+        # multiplication
+        def multiply():
+            global n1
+            global operation
+            operation = "multiplication"
+            num1 = entry.get()
+            n1 = int(num1)
+            entry.delete(0, END)
+        
+        # division
+        def divide():
+            global n1
+            global operation
+            operation = "division"
+            num1 = entry.get()
+            n1 = int(num1)
+            entry.delete(0, END)
+
+        def result():
+            num2 = entry.get()
+            entry.delete(0, END)
+
+            if operation == "addition":
+                entry.insert(0, n1 + int(num2))
+            elif operation == "subtraction":
+                entry.insert(0, n1 - int(num2))
+            elif operation == "multiplication":
+                entry.insert(0, n1 * int(num2))
+            elif operation == "division":
+                entry.insert(0, n1 / int(num2))
 
         # columns
         for i in range(4):
@@ -67,10 +120,10 @@ class Numbers(ttk.Frame):
         ttk.Button(self, text = "1", command = lambda: enter(1)).grid(row = 3, column = 0)
         
         # row 4
-        ttk.Button(self, text = "+").grid(row = 4, column = 3)
-        ttk.Button(self, text = "=").grid(row = 4, column = 2, sticky = NSEW)
-        ttk.Button(self, text = "0", command = lambda: enter(0)).grid(row = 4, column = 1, sticky = NSEW)
-        ttk.Button(self, text = "c").grid(row = 4, column = 0, sticky = NSEW)
+        ttk.Button(self, text = "+").grid(row = 4, column = 3, sticky = EW)
+        ttk.Button(self, text = "=", command = result).grid(row = 4, rowspan = 5, column = 2, sticky = NSEW)
+        ttk.Button(self, text = "0", command = lambda: enter(0)).grid(row = 4, rowspan = 5, column = 1, sticky = NSEW)
+        ttk.Button(self, text = "c", command = entry_clear).grid(row = 4, rowspan = 5, column = 0, sticky = NSEW)
 
         # row 5
         ttk.Button(self, text = "%").grid(row = 5, column = 3, sticky = EW)
