@@ -66,9 +66,9 @@ class Numbers(ttk.Frame):
         
         # row 4
         ttk.Button(self, text = "+").grid(row = 4, column = 3)
-        ttk.Button(self, text = "=").grid(row = 4, column = 2)
-        ttk.Button(self, text = "0", command = lambda: enter(0)).grid(row = 4, column = 1, sticky = EW)
-        ttk.Button(self, text = "c").grid(row = 4, column = 0, sticky = EW)
+        ttk.Button(self, text = "=").grid(row = 4, column = 2, sticky = NSEW)
+        ttk.Button(self, text = "0", command = lambda: enter(0)).grid(row = 4, column = 1, sticky = NSEW)
+        ttk.Button(self, text = "c").grid(row = 4, column = 0, sticky = NSEW)
 
         # row 5
         ttk.Button(self, text = "%").grid(row = 5, column = 3, sticky = EW)
