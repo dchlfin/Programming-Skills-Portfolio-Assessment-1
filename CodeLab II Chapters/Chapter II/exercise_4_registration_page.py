@@ -5,14 +5,10 @@ from tkinter import ttk
 class RegistrationPage(Tk):
     def __init__(self):
         super().__init__()
-
-        # widgets
         self.title("Registration Page")
         self.geometry('338x650')
-        # self.resizable(False, False)
         self.configure(bg = 'white')
         
-        # store image as instance variable
         self.bsu_banner = PhotoImage(file = 'assets/bsu-banner.png')
         Label(self, image=self.bsu_banner).pack(side = TOP)
 
@@ -25,7 +21,9 @@ class RegistrationPage(Tk):
         self.s.configure('bg.Horizontal.TScale', background = '#F5F5F6')
         self.s.configure('bg.TButton', background = '#22263D')
 
-        # main widget
+        # main widgets
+        self.bsu_banner = PhotoImage(file = 'assets/bsu-banner.png')
+        Label(self, image=self.bsu_banner).pack(side = TOP)
         self.student_management = StudentManagement(self, self.s)
         self.student_management.pack(side = TOP, pady = 15)
 
@@ -85,12 +83,10 @@ class Entries(ttk.Frame):
 
         # combobox
         gender = ["Male", "Female"]
-
-        # style combobox ?
         ttk.Combobox(self, values = gender, width = 21).grid(row = 4, column = 1, sticky = E, ipady = 4) 
 
 class Courses(ttk.Frame):
-    def __init__(self, parent, s): #s
+    def __init__(self, parent, s):
         super().__init__(parent, width = 252, height = 80)
         self.s = s
         self.configure(style = 'bg.TFrame')
