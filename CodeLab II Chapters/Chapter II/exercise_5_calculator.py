@@ -77,6 +77,15 @@ class Numbers(ttk.Frame):
             n1 = int(num1)
             entry.delete(0, END)
 
+        # modulo
+        def modulo():
+            global n1
+            global operation
+            operation = "modulo"
+            num1 = entry.get()
+            n1 = int(num1)
+            entry.delete(0, END)
+
         def result():
             num2 = entry.get()
             entry.delete(0, END)
@@ -89,6 +98,10 @@ class Numbers(ttk.Frame):
                 entry.insert(0, n1 * int(num2))
             elif operation == "division":
                 entry.insert(0, n1 / int(num2))
+            elif operation == "modulo":
+                entry.insert(0, n1 % int(num2))
+            else: 
+                entry.insert(0, "Error")
 
         # columns
         for i in range(4):
@@ -127,7 +140,7 @@ class Numbers(ttk.Frame):
         ttk.Button(self, text = "c", command = entry_clear).grid(row = 4, rowspan = 5, column = 0, sticky = NSEW)
 
         # row 5
-        ttk.Button(self, text = "%").grid(row = 5, column = 3, sticky = EW)
+        ttk.Button(self, text = "%", command = modulo).grid(row = 5, column = 3, sticky = EW)
 
 if __name__ == "__main__":
     Calculator()
