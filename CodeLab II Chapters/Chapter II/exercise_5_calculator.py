@@ -70,5 +70,8 @@ class Numbers(ttk.Frame):
         ttk.Button(self, text = "0", command = lambda: enter(0)).grid(row = 4, column = 1, sticky = EW)
         ttk.Button(self, text = "c").grid(row = 4, column = 0, sticky = EW)
 
+        # row 5
+        ttk.Button(self, text = "%").grid(row = 5, column = 3, sticky = EW)
+
 if __name__ == "__main__":
     Calculator()
