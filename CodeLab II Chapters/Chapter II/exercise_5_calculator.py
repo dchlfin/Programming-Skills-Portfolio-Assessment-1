@@ -32,8 +32,10 @@ class Numbers(ttk.Frame):
         self.entry_font = entry_font
 
         # add num
-        def add_num(num):
-            entry.insert(0, num)
+        def enter(num):
+            current = entry.get()
+            entry.delete(0, END)
+            entry.insert(0, str(current) + str(num))
 
         # columns
         self.columnconfigure(0, weight = 1)
@@ -44,21 +46,22 @@ class Numbers(ttk.Frame):
         # widgets
         entry = ttk.Entry(self, style = 'calc.TEntry', **entry_font).grid(row = 0, column = 0, columnspan = 4, padx = 5, pady = (0, 5), sticky = EW)
         
-        ttk.Button(self, text = "÷").grid(row = 0, column = 3)
-        ttk.Button(self, text = "9").grid(row = 0, column = 2)
-        ttk.Button(self, text = "8").grid(row = 0, column = 1)
-        ttk.Button(self, text = "7").grid(row = 0, column = 0)
-        ttk.Button(self, text = "x").grid(row = 1, column = 3)
-        ttk.Button(self, text = "6").grid(row = 1, column = 2)
-        ttk.Button(self, text = "5").grid(row = 1, column = 1)
-        ttk.Button(self, text = "4").grid(row = 1, column = 0)
-        ttk.Button(self, text = "-").grid(row = 2, column = 3)
-        ttk.Button(self, text = "3").grid(row = 2, column = 2)
-        ttk.Button(self, text = "2").grid(row = 2, column = 1)
-        ttk.Button(self, text = "1").grid(row = 2, column = 0)
-        ttk.Button(self, text = "+").grid(row = 3, column = 3)
-        ttk.Button(self, text = "=").grid(row = 3, column = 2)
-        ttk.Button(self, text = "0").grid(row = 3, column = 0, columnspan = 2, sticky = EW)
+        ttk.Button(self, text = "÷").grid(row = 1, column = 3)
+        ttk.Button(self, text = "9", command = lambda: enter(9)).grid(row = 1, column = 2)
+        ttk.Button(self, text = "8", command = lambda: enter(8)).grid(row = 1, column = 1)
+        ttk.Button(self, text = "7", command = lambda: enter(7)).grid(row = 1, column = 0)
+        ttk.Button(self, text = "×").grid(row = 2, column = 3)
+        ttk.Button(self, text = "6", command = lambda: enter(6)).grid(row = 2, column = 2)
+        ttk.Button(self, text = "5", command = lambda: enter(5)).grid(row = 2, column = 1)
+        ttk.Button(self, text = "4", command = lambda: enter(4)).grid(row = 2, column = 0)
+        ttk.Button(self, text = "-").grid(row = 3, column = 3)
+        ttk.Button(self, text = "3", command = lambda: enter(3)).grid(row = 3, column = 2)
+        ttk.Button(self, text = "2", command = lambda: enter(2)).grid(row = 3, column = 1)
+        ttk.Button(self, text = "1", command = lambda: enter(1)).grid(row = 3, column = 0)
+        ttk.Button(self, text = "+").grid(row = 4, column = 3)
+        ttk.Button(self, text = "=").grid(row = 4, column = 2)
+        ttk.Button(self, text = "0", command = lambda: enter(0)).grid(row = 4, column = 1, sticky = EW)
+        ttk.Button(self, text = "c").grid(row = 4, column = 0, sticky = EW)
 
 if __name__ == "__main__":
     Calculator()
