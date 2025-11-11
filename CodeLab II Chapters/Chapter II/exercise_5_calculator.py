@@ -38,10 +38,12 @@ class Numbers(ttk.Frame):
             entry.insert(0, str(current) + str(num))
 
         # columns
-        self.columnconfigure(0, weight = 1)
-        self.columnconfigure(1, weight = 1)
-        self.columnconfigure(2, weight = 1)
-        self.columnconfigure(3, weight = 1)
+        for i in range(4):
+            self.columnconfigure(i, weight = 1)
+
+        # rows
+        for i in range(6):
+            self.rowconfigure(i, weight = 1)
 
         # widgets
         entry = ttk.Entry(self, style = 'calc.TEntry', **entry_font).grid(row = 0, column = 0, columnspan = 4, padx = 5, pady = (0, 5), sticky = EW)
