@@ -69,9 +69,8 @@ class DisplayFrame(Frame):
         self.rowconfigure(0, weight = 1)
         self.grid_propagate(False)
 
-
-        Label(self, text = "hello", font = ('Helvetica', 12)).grid(row = 0, rowspan = 2, column = 0, columnspan = 2, sticky = NSEW)
-
+        display = Label(self, text = "", font = ('Helvetica', 12))
+        display.grid(row = 0, rowspan = 2, column = 0, columnspan = 2, sticky = NSEW)
 
 if __name__ == "__main__":
     Greeting()
