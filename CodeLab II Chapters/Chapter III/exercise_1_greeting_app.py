@@ -43,13 +43,15 @@ class InputFrame(ttk.Frame):
 
         # name
         Label(self, text = "Enter your Name:", background = 'white').grid(row = 1, column = 0, ipadx = 5, pady = (10, 5), sticky = E)
-        ttk.Entry(self).grid(row = 1, column = 1, padx = 5, pady = (0, 5), sticky = EW)
+        name = ttk.Entry(self)
+        name.grid(row = 1, column = 1, padx = 5, pady = (0, 5), sticky = EW)
 
         # color
         Label(self, text = "Select a Color:", background = 'white').grid(row = 2, column = 0, padx = 5, pady = (0, 5),sticky = E)
 
         colors = ['red', 'orange', 'yellow', 'green', 'blue', 'violet']
-        ttk.Combobox(self, values = colors).grid(row = 2, column = 1, padx = 5, pady = (0, 5), sticky = EW)
+        color = ttk.Combobox(self, values = colors)
+        color.grid(row = 2, column = 1, padx = 5, pady = (0, 5), sticky = EW)
 
         # update greeting
         Button(self, text = "Update Greeting", font = ('Helvetica', 9,  'bold'), background = '#03B1EE', foreground = '#CBECFF', relief = FLAT).grid(row = 4, column = 0, columnspan = 3, pady = 10, ipadx = 5, ipady = 5)
