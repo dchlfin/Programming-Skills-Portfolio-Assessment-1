@@ -13,23 +13,17 @@ class Greeting(Tk):
         for i in range(2):
             self.rowconfigure(i, weight = 1)
 
-        # style
-        self.s = ttk.Style()
-        self.s.configure('Greeting.TFrame', background = 'white')
-
         # widgets
-        self.input_frame = InputFrame(self, self.s)
+        self.input_frame = InputFrame(self)
         self.input_frame.grid(row = 0, sticky = EW, pady = (0,5))
 
         # run
         self.mainloop()
 
 class InputFrame(ttk.Frame):
-    def __init__(self, parent, s):
+    def __init__(self, parent):
         super().__init__(parent) 
-        self.s = s
-        self.configure(style = 'Greeting.TFrame')   
-
+        
         # layout configuration
         # columns
         for i in range(2):
